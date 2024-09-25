@@ -1,6 +1,6 @@
 namespace ECommerceApp.Web.Models
 {
-    public class Product
+    public class ProductViewModel
     {
         
     }
