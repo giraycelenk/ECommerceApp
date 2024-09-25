@@ -1,4 +1,5 @@
 using ECommerceApp.Data.Abstract;
+using ECommerceApp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 namespace ECommerceApp.Web.Controllers
 {
@@ -11,7 +12,16 @@ namespace ECommerceApp.Web.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var products = _eCommerceRepository.Products.Select(p => new ProductViewModel{
+                Id= p.Id,
+                Name= p.Name,
+                Description= p.Description,
+                Price= p.Price,
+            }).ToList();
+
+            return View(new ProductListViewModel {
+                Products = products
+            });
         }
     }
 }
