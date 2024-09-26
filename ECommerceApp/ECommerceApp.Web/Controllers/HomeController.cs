@@ -28,6 +28,7 @@ namespace ECommerceApp.Web.Controllers
                 Products = products,
                 PageInfo = new PageInfo{
                     ItemsPerPage = pageSize,
+                    CurrentPage = page,
                     TotalItems = _eCommerceRepository.Products.Count()
                 }
             });
