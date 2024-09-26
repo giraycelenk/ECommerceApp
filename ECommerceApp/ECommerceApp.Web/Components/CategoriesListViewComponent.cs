@@ -1,4 +1,5 @@
 using ECommerceApp.Data.Abstract;
+using ECommerceApp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -14,11 +15,15 @@ namespace ECommerceApp.Web.Components
         public IViewComponentResult Invoke()
         {
             var model = _eCommerceRepository
-                        .Products
-                        .Select(c => c.Category)
-                        .Distinct()
-                        .OrderBy(c => c);
+                        .Categories
+                        .Select(c => new CategoryViewModel{
+                            Id = c.Id,
+                            Name = c.Name,
+                            Url = c.Url,
+                        })
+                        .ToList();
             return View(model);
+            
         }
     }
 }
