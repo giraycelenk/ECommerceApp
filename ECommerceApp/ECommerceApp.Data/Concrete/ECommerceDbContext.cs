@@ -21,6 +21,10 @@ namespace ECommerceApp.Data.Concrete
                     new() { Id=4, Name="IPhone 15", Price=66000, Description="IPhone 15 Description", Category="Telefon" },
                     new() { Id=5, Name="IPhone 16", Price=76000, Description="IPhone 16 Description", Category="Telefon" },
                     new() { Id=6, Name="IPhone 17", Price=86000, Description="IPhone 17 Description", Category="Telefon" },
+                    new() { Id=7, Name="AirPods 2. Nesil", Price=5600, Description="AirPods 2. Nesil Description", Category="Kulaklık" },
+                    new() { Id=8, Name="AirPods 3. Nesil", Price=6300, Description="AirPods 3. Nesil Description", Category="Kulaklık" },
+                    new() { Id=9, Name="AirPods Pro 2", Price=12000, Description="AirPods Pro 2 Description", Category="Kulaklık" },
+                    new() { Id=10, Name="AirPods Max", Price=27000, Description="AirPods Max Description", Category="Kulaklık" },
                 }
             );
         }
