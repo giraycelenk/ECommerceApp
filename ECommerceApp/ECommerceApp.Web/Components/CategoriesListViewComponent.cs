@@ -14,14 +14,14 @@ namespace ECommerceApp.Web.Components
         }
         public IViewComponentResult Invoke()
         {
+            ViewBag.SelectedCategory = RouteData?.Values["category"];
             var model = _eCommerceRepository
                         .Categories
                         .Select(c => new CategoryViewModel{
                             Id = c.Id,
                             Name = c.Name,
                             Url = c.Url,
-                        })
-                        .ToList();
+                        }).ToList();
             return View(model);
             
         }

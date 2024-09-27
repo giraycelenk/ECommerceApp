@@ -1,6 +1,7 @@
 using ECommerceApp.Data.Abstract;
 using ECommerceApp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 namespace ECommerceApp.Web.Controllers
 {
     public class HomeController:Controller
@@ -11,25 +12,20 @@ namespace ECommerceApp.Web.Controllers
         {
             _eCommerceRepository = eCommerceRepository;
         }
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(string category, int page = 1)
         {
-            var products = _eCommerceRepository
-                .Products
-                .Skip((page-1)*pageSize)
-                .Select(p => 
-                    new ProductViewModel{
-                        Id= p.Id,
-                        Name= p.Name,
-                        Description= p.Description,
-                        Price= p.Price,
-                    }).Take(pageSize);
-
             return View(new ProductListViewModel {
-                Products = products,
+                Products = _eCommerceRepository.GetProductsByCategory(category,page,pageSize).Select(p => 
+                                new ProductViewModel{
+                                    Id= p.Id,
+                                    Name= p.Name,
+                                    Description= p.Description,
+                                    Price= p.Price,
+                                }).Take(pageSize),
                 PageInfo = new PageInfo{
                     ItemsPerPage = pageSize,
                     CurrentPage = page,
-                    TotalItems = _eCommerceRepository.Products.Count()
+                    TotalItems = _eCommerceRepository.GetProductCount(category)
                 }
             });
         }
