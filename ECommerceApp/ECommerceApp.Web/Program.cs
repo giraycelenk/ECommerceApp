@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 builder.Services.AddAutoMapper(typeof(MapperProfile).Assembly);
 
@@ -14,11 +15,13 @@ builder.Services.AddDbContext<ECommerceDbContext>(options => {
 });
 
 builder.Services.AddScoped<IECommerceRepository, EfECommerceRepository>();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
 
 app.UseStaticFiles();
+app.UseSession();
 
 
 app.MapControllerRoute("product_in_category","products/{category?}",new { controller="Home", action = "Index" });
@@ -26,5 +29,6 @@ app.MapControllerRoute("product_in_category","products/{category?}",new { contro
 app.MapControllerRoute("product_details","{product_name}",new { controller="Home", action = "Details" });
 
 app.MapDefaultControllerRoute();
+app.MapRazorPages();
 
 app.Run();
