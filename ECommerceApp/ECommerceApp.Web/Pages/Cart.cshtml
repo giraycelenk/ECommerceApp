@@ -27,7 +27,7 @@ else
                     <td>@item.Product.Price</td>
                     <td>@item.Quantity</td>
                     <td>
-                        @((item.Quantity * item.Product.Price).ToString()) ₺
+                        @((item.Quantity * item.Product.Price).ToString("c"))
                     </td>
                     <td>
                         <form method="post" asp-page-handler="Remove">
@@ -42,7 +42,7 @@ else
             <tr>
                 <td colspan="3">Ödenecek Tutar:</td>
                 <td>
-                    @Model?.Cart?.CalculateTotal() ₺
+                    @Model?.Cart?.CalculateTotal().ToString("c")
                 </td>
             </tr>
         </tfoot>
@@ -51,4 +51,5 @@ else
 
 <div>
     <a href="/" class="btn btn-primary">Alışverişe Devam Et</a>
+    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Siparişi Tamamla</a>
 </div>
