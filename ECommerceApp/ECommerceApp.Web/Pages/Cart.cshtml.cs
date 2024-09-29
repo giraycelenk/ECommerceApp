@@ -26,13 +26,18 @@ namespace ECommerceApp.Web.Pages
             {
                 Cart?.AddItem(product,1);
             }
-            return RedirectToPage("/cart");
+            return RedirectToPage("/");
         }
 
         public IActionResult OnPostRemove(int Id)
         {
             Cart?.RemoveItem(Cart.Items.First(p => p.Product.Id == Id).Product);
             return RedirectToPage("/Cart");
+        }
+        public IActionResult OnGetClear()
+        {
+            Cart?.Clear();
+            return RedirectToPage("/");
         }
     }
 }
