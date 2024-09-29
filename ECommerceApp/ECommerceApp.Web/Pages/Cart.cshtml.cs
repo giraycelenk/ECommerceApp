@@ -29,5 +29,14 @@ namespace ECommerceApp.Web.Pages
             }
             return RedirectToPage("/cart");
         }
+
+        public IActionResult OnPostRemove(int Id)
+        {
+            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            var product = Cart.Items.First(p => p.Product.Id == Id).Product;
+            Cart?.RemoveItem(product);
+            HttpContext.Session.SetJson("cart",Cart);
+            return RedirectToPage("/Cart");
+        }
     }
 }
