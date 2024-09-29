@@ -9,33 +9,29 @@ namespace ECommerceApp.Web.Pages
     public class CartModel : PageModel
     {
         private IECommerceRepository _repository;
-        public CartModel(IECommerceRepository repository)
+        public CartModel(IECommerceRepository repository,Cart cartservice)
         {
             _repository = repository;
+            Cart = cartservice;
         }
         public Cart? Cart { get; set; }
         public void OnGet()
         {
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            
         }
         public IActionResult OnPost(int Id)
         {
             var product = _repository.Products.FirstOrDefault(i => i.Id == Id);
             if(product != null)
             {
-                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-                Cart.AddItem(product,1);
-                HttpContext.Session.SetJson("cart",Cart);
+                Cart?.AddItem(product,1);
             }
             return RedirectToPage("/cart");
         }
 
         public IActionResult OnPostRemove(int Id)
         {
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-            var product = Cart.Items.First(p => p.Product.Id == Id).Product;
-            Cart?.RemoveItem(product);
-            HttpContext.Session.SetJson("cart",Cart);
+            Cart?.RemoveItem(Cart.Items.First(p => p.Product.Id == Id).Product);
             return RedirectToPage("/Cart");
         }
     }

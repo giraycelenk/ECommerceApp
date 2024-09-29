@@ -13,8 +13,8 @@ else
         <thead>
             <tr>
                 <th>Ürün</th>
-                <th>Adet</th>
                 <th>Fiyat</th>
+                <th>Adet</th>
                 <th>Toplam Ücret</th>
                 <th></th>
             </tr>
@@ -24,15 +24,15 @@ else
             {
                 <tr>
                     <td>@item.Product.Name</td>
-                    <td>@item.Quantity</td>
                     <td>@item.Product.Price</td>
+                    <td>@item.Quantity</td>
                     <td>
                         @((item.Quantity * item.Product.Price).ToString()) ₺
                     </td>
                     <td>
                         <form method="post" asp-page-handler="Remove">
                             <input type="hidden" name="Id" value="@item.Product.Id">
-                            <button type="submit" class="btn btn-danger">Sil</button>
+                            <button type="submit" class="btn btn-danger">Sepetten çıkar</button>
                         </form>
                     </td>
                 </tr>

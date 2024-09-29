@@ -15,7 +15,11 @@ builder.Services.AddDbContext<ECommerceDbContext>(options => {
 });
 
 builder.Services.AddScoped<IECommerceRepository, EfECommerceRepository>();
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<Cart>(sc => SessionCart.GetCart(sc));
 
 var app = builder.Build();
 
