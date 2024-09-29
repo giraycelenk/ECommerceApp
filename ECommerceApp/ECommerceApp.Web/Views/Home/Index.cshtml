@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col-md-3">
-        <vc:categories-list></vc:categories-list>
+        <vc:categories-list/>
     </div>
     <div class="col-md-9">
         @if(Model.Products.Count() == 0)
@@ -35,8 +35,8 @@
             page-model="@Model.PageInfo" 
             page-action="Index"
             page-class="btn"
-            page-class-link="btn-outline-secondary"
-            page-class-active="btn-secondary"
+            page-class-link="btn-outline-dark"
+            page-class-active="btn-dark"
             class="btn-group my-2"></div>
         }
         
