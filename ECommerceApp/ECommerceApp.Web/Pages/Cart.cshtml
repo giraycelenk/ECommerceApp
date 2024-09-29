@@ -24,7 +24,7 @@ else
             {
                 <tr>
                     <td>@item.Product.Name</td>
-                    <td>@item.Product.Price</td>
+                    <td>@item.Product.Price.ToString("c")</td>
                     <td>@item.Quantity</td>
                     <td>
                         @((item.Quantity * item.Product.Price).ToString("c"))

@@ -15,6 +15,7 @@ builder.Services.AddDbContext<ECommerceDbContext>(options => {
 });
 
 builder.Services.AddScoped<IECommerceRepository, EfECommerceRepository>();
+builder.Services.AddScoped<IOrderRepository, EfOrderRepository>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 

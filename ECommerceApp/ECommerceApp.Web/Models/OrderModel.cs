@@ -1,3 +1,6 @@
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+
 namespace ECommerceApp.Web.Models
 {
     public class OrderModel
@@ -7,8 +10,10 @@ namespace ECommerceApp.Web.Models
         public string Name { get; set; } = null!;
         public string City { get; set; } = null!;
         public string Phone { get; set; } = null!;
+        [EmailAddress]
         public string Email { get; set; } = null!;
         public string AddressLine { get; set; } = null!;
-        public Cart Cart { get; set; } = null!;
+        [BindNever]
+        public Cart? Cart { get; set; } = null!;
     }
 }
